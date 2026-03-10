@@ -15,9 +15,9 @@ const FloatingParticles = () => {
 export const Hero3D = () => {
   return (
     <section id="home" className="relative h-screen w-full overflow-hidden bg-[#0C0804]">
-      {/* 3D Background */}
+      {/* 3D Background - Added dpr to optimize GPU usage and fix lag */}
       <div className="absolute inset-0 z-0 opacity-60">
-        <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
+        <Canvas camera={{ position: [0, 0, 5], fov: 45 }} dpr={[1, 2]}>
           <ambientLight intensity={0.5} />
           <FloatingParticles />
         </Canvas>
