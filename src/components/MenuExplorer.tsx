@@ -1,10 +1,22 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { UtensilsCrossed, Coffee, CakeSlice } from 'lucide-react';
 import { menuData, categories } from '../data/menuData';
 import { MenuItem } from './MenuItem';
+import { useCart } from '../context/CartContext';
+
+const getCategoryIcon = (category: string) => {
+  switch (category) {
+    case 'Mains': return <UtensilsCrossed className="w-4 h-4" />;
+    case 'Beverages': return <Coffee className="w-4 h-4" />;
+    case 'Desserts': return <CakeSlice className="w-4 h-4" />;
+    default: return null;
+  }
+};
 
 export const MenuExplorer = () => {
   const [activeCategory, setActiveCategory] = useState(categories[0]);
+  const { addToCart } = useCart(); // Get addToCart here instead of inside MenuItem
 
   const filteredItems = menuData.filter(item => item.category === activeCategory);
 
@@ -23,18 +35,19 @@ export const MenuExplorer = () => {
         </motion.div>
 
         {/* Category Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-16">
+        <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-16">
           {categories.map((category) => (
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-6 py-2.5 rounded-full text-sm font-medium tracking-wide transition-all duration-300 cursor-pointer ${
+              className={`px-6 py-3 rounded-full text-sm font-medium tracking-wide transition-all duration-300 cursor-pointer flex items-center gap-2.5 ${
                 activeCategory === category
                   ? 'bg-[#D4A373] text-[#0C0804]'
                   : 'bg-transparent text-[#A39F98] border border-[#2B2620] hover:border-[#D4A373]/50 hover:text-[#FDFBF7]'
               }`}
             >
-              {category}
+              {getCategoryIcon(category)}
+              {category.toUpperCase()}
             </button>
           ))}
         </div>
@@ -51,7 +64,7 @@ export const MenuExplorer = () => {
               className="flex flex-col"
             >
               {filteredItems.map((item, index) => (
-                <MenuItem key={item.id} item={item} index={index} />
+                <MenuItem key={item.id} item={item} index={index} onAdd={addToCart} />
               ))}
             </motion.div>
           </AnimatePresence>
