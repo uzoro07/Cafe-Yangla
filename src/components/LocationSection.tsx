@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Clock } from 'lucide-react';
+import { ScrollReveal } from './ScrollReveal'; // Import the new component
 
 export const LocationSection = () => {
   return (
@@ -15,11 +16,18 @@ export const LocationSection = () => {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-4xl md:text-5xl font-playfair text-[#FDFBF7] mb-6">Visit Our Cafe</h2>
-            <div className="w-16 h-[1px] bg-[#D4A373] mb-10" />
+            <div className="w-16 h-[1px] bg-[#D4A373] mb-6" />
             
-            <p className="text-[#A39F98] text-lg font-light mb-12 max-w-md leading-relaxed">
+            {/* Replaced standard <p> with your ScrollReveal component */}
+            <ScrollReveal 
+              baseOpacity={0} 
+              blurStrength={5} 
+              containerClassName="mb-12 max-w-md"
+              textClassName="text-[#A39F98] font-light leading-relaxed"
+              size="sm"
+            >
               Experience the perfect blend of delicious food and a serene atmosphere right in the heart of North Sikkim.
-            </p>
+            </ScrollReveal>
 
             <div className="space-y-8">
               <div className="flex items-start gap-4">
