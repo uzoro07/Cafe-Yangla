@@ -2,6 +2,7 @@ import React from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Stars, Sparkles } from '@react-three/drei';
 import { motion } from 'framer-motion';
+import { ScrollReveal } from './ScrollReveal'; // Import the new component
 
 const FloatingParticles = () => {
   return (
@@ -15,7 +16,7 @@ const FloatingParticles = () => {
 export const Hero3D = () => {
   return (
     <section id="home" className="relative h-screen w-full overflow-hidden bg-[#0C0804]">
-      {/* 3D Background - Added dpr to optimize GPU usage and fix lag */}
+      {/* 3D Background */}
       <div className="absolute inset-0 z-0 opacity-60">
         <Canvas camera={{ position: [0, 0, 5], fov: 45 }} dpr={[1, 2]}>
           <ambientLight intensity={0.5} />
@@ -36,13 +37,22 @@ export const Hero3D = () => {
           <span className="text-[#D4A373] font-inter tracking-[0.3em] text-xs md:text-sm uppercase mb-6 block">
             North Sikkim's Finest Cafe
           </span>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-playfair text-[#FDFBF7] leading-tight mb-8">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-playfair text-[#FDFBF7] leading-tight mb-4">
             Taste the <br />
             <span className="italic text-white/80">Mountains</span>
           </h1>
-          <p className="text-[#A39F98] font-inter text-lg md:text-xl max-w-2xl mx-auto mb-12 font-light">
+          
+          {/* Replaced standard <p> with your ScrollReveal component */}
+          <ScrollReveal 
+            baseOpacity={0} 
+            blurStrength={8} 
+            containerClassName="max-w-2xl mx-auto mb-8"
+            textClassName="text-[#A39F98] font-inter font-light"
+            size="md"
+            align="center"
+          >
             Warm hospitality, beautiful ambiance, and the best food in Mangan. A must-visit stop for travelers.
-          </p>
+          </ScrollReveal>
         </motion.div>
 
         <motion.div
